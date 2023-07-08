@@ -41,11 +41,13 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 ]
-LOCAL_APPS = []
+LOCAL_APPS = [
+    'user',
+]
 THIRD_PARTY_APPS = []
 DEV_APPS = []
 
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + THIRD_PARTY_APPS + DEV_APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS + DEV_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
