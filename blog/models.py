@@ -16,7 +16,7 @@ class Article(models.Model):
 class Rate(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="rates")
     rate = models.PositiveSmallIntegerField(
-        default=2, validators=[MinValueValidator(1), MaxValueValidator(5)]
+        default=2, validators=[MinValueValidator(0), MaxValueValidator(5)]
     )
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
