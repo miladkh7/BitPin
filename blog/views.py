@@ -4,8 +4,7 @@ from django.db.models.aggregates import Avg, Count
 
 #Third party
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
-from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly,IsAuthenticated
 
 #Local
 from .models import Article
@@ -25,4 +24,8 @@ class ArticleViewSet(ModelViewSet):
         if self.request.method == 'GET':
             return [AllowAny()]
         else:
-            return [IsAuthenticatedOrReadOnly()]
+            return [IsAuthenticated()]
+
+    def get_serializer_context(self):
+        return {'user_id':self.request.user.pk}
+        # return {'user_id':self.request.user.id}
