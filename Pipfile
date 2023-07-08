@@ -6,13 +6,14 @@ name = "pypi"
 [packages]
 django = "*"
 djangorestframework = "*"
-flake8 = "*"
-black = "*"
 
 [dev-packages]
 django-extensions = "*"
 install = "*"
 django-debug-toolbar = "*"
+flake8 = "*"
+black = "*"
+autopep8 = "*"
 
 [requires]
 python_version = "3.10"
