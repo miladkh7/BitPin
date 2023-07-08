@@ -6,7 +6,7 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
 #local
-from .models import Article
+from .models import Article, Rate
 
 class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
@@ -21,3 +21,14 @@ class ArticleSerializer(serializers.ModelSerializer):
         user_id = self.context['user_id']
         user = get_object_or_404(get_user_model(), pk=user_id)
         return Article.objects.create(author=user, **validated_data)
+    
+
+class RateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Rate
+        field = ['article', 'rate']
+
+    def create(self, validated_data):
+        user_id = self.context['user_id']
+        user = get_object_or_404(get_user_model(), pk=user_id)
+        return Rate.objects.create(author=user, **validated_data)
