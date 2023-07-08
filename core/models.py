@@ -1,12 +1,13 @@
 #Django
 from django.db import models
-# from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
+
 
 class BaseModel(models.Model):
     created_time = models.DateTimeField(
-        verbose_name='created time', auto_now_add=True)
+        verbose_name=_('created time'), auto_now_add=True)
     modified_time = models.DateTimeField(
-        verbose_name='modified time', auto_now=True)
+        verbose_name=_('modified time'), auto_now=True)
 
     class Meta:
         abstract = True
