@@ -1,0 +1,52 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    # command: python /code/manage.py runserver 0.0.0.0:8000 --settings=config.settings.production 
+    volumes:
+      - .:/code
+      - web_data:/vol/web
+    ports:
+      - 8000:8000
+    env_file:
+      - .env     
+    environment:
+      - DUBUG=0
+    depends_on:
+      - database
+  database:
+    image: mysql:8.0.32
+    environment:
+       - "MYSQL_DATABASE=BlogDatabase"
+       - "MYSQL_ROOT_PASSWORD=test"
+    volumes:
+      - bit_pin_mysql_data:/var/lib/mysql
+
+    ports:
+      - 3305:3306
+    # security_opt:
+    #   - seccomp:unconfined
+  filebrowser:
+    image: hurlenko/filebrowser
+    user: "root:root"
+    ports:
+      - 443:8080
+    volumes:
+      - web_data:/data
+      - /CONFIG_DIR:/config
+    environment:
+      - FB_BASEURL=/filebrowser
+    restart: always
+    depends_on:
+      - database
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
+volumes:
+  bit_pin_mysql_data:
+  web_data:
