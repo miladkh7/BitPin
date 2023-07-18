@@ -4,11 +4,7 @@ from django.db.models.aggregates import Avg, Count
 # Third party
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
-from rest_framework.permissions import (
-    AllowAny,
-    IsAuthenticatedOrReadOnly,
-    IsAuthenticated,
-)
+from rest_framework.permissions import IsAdminUser
 from rest_framework import status
 from rest_framework.response import Response
 
@@ -16,7 +12,7 @@ from rest_framework.response import Response
 from .models import Article
 from .serilizers import ArticleSerializer, RateSerializer
 from .pagination import DefaultPagination
-
+from .permissions import IsAdminOrIsOwnerOrReadOnly
 
 class ArticleViewSet(ModelViewSet):
 
@@ -25,12 +21,7 @@ class ArticleViewSet(ModelViewSet):
     ).all()
     serializer_class = ArticleSerializer
     pagination_class = DefaultPagination
-
-    def get_permissions(self):
-        if self.request.method == "GET":
-            return [AllowAny()]
-        else:
-            return [IsAuthenticated()]
+    permission_classes =[ IsAdminOrIsOwnerOrReadOnly, ]
 
     def get_serializer_context(self):
         return {"user_id": self.request.user.pk}
