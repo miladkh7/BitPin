@@ -2,6 +2,9 @@
 this is technical task for BitPin
 Blog App Api
 
+**Some additional feature and improvments add in my free time 
+but the technical task tagged by version 1.0.0**
+
 ## Technologies
 * Django
 * Django Rest Framework
@@ -9,7 +12,7 @@ Blog App Api
 
 
 ## Project Technical Description
-* use drf token base login 
+* use DRF token base login 
 
 
 ## Installation
@@ -19,12 +22,33 @@ Blog App Api
 * run by docker with this command `docker-compose up`
 
 ## Usage
+
+### Registration 
+send POST Request to `appDomain:appPort\auth\users\`
+with value
+>    **email:** `yourEmail`
+    **username:** `yourUserName`
+    **Password:** `yourPassword`
+
+and get Response `HTTP 201 Created`
+for example use this curl command
+
+```
+curl -X POST http://127.0.0.1:8000/auth/users/ \
+    -H 'Content-Type: application/json' \
+    -d '{
+    "password": "example123456",
+    "username": "userTest",
+    "email":"example@example.com"
+}'
+```
 ### Login
 for get token login we shod send POST Request to this end point `appDomain:appPort\auth\token\login`
 with value
 
-    **username:** yourUserName
+>    **username:** yourUserName
     **Password:** yourPassword
+
 and get Response with `HTTP 200 OK` and get auth_token
 
     {
@@ -63,18 +87,25 @@ curl -X POST http://127.0.0.1:8000/blog/article/ \
     "content": "new book contnet"
 }'
 ```
+## Change Log
+### [1.0.0] 2023-07-08 milad_khaleghi@Live.com
+only support technical Task
 
+### [1.1.0] 2023-07-18 milad_khaleghi@Live.com
+Some additional Feature and improvements added to project in my free time as hobby.
+
+#### Added
+- User Api (Registration-login-logout)
 
 ## ToDo
 ### User app
  - [x] create custom user
  - [x] create profile 
  - [x] custom user model admin page
- - [ ] login api(token base)
- - [ ] user registration serializer
+ - [x] login api(token base)
  - [ ] permission
  - [ ] document
- - [ ] customer profile model
+ - [ ] Update profile Apis
  - [ ] define reviewer permission
  - [ ] use only field to improve performance
 
