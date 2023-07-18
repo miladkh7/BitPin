@@ -27,7 +27,7 @@ class ArticleViewSet(ModelViewSet):
         return {"user_id": self.request.user.pk}
         # return {'user_id':self.request.user.id}
 
-    @action(methods=["POST"], detail=True)
+    @action(methods=["POST"], detail=True, serializer_class=RateSerializer)
     def submit_rate(self, request, pk):
         article = self.get_object()
         serializer = RateSerializer(article, data=request.data)
