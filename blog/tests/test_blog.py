@@ -51,3 +51,21 @@ class BlogTestCase(TestCase):
         self.assertTrue(Article.objects.filter(title="test_title").exists())
         self.assertEqual(Article.objects.filter(title="test_title").get().author, self.authenticated_user)
         self.assertEqual(Article.objects.filter(title="test_title").get().content, data['content'])
+
+
+    def test_create_book_with_unauthenticated_user_by_token(self):
+        data = {
+            "title": "test_title",
+            "content": "test_content",
+        }
+        response = self.client.post(
+            path=reverse('article-list'),
+            data=data,
+            content_type='application/json',
+            follow=True
+        )
+
+        # check response code
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+
