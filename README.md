@@ -103,7 +103,9 @@ Some additional Feature and improvements added to project in my free time as hob
  - [x] create profile 
  - [x] custom user model admin page
  - [x] login api(token base)
- - [ ] permission
+ - [x] permission
+ - [ ] add open api schema
+ - [ ] separate develop setting
  - [ ] document
  - [ ] Update profile Apis
  - [ ] define reviewer permission
