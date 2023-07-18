@@ -103,4 +103,35 @@ class BlogTestCase(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['title'], data['title'])
         self.assertEqual(response.data['content'], data['content'])
-         
+    
+    def test_update_article_by_not_owner(self):
+        user = UserFactory()
+        user.set_password('testp')
+        user.save()
+        self.client.login(
+            username=user.username,
+            password='testp'
+        )
+        data = {
+            "title": "test_title2",
+            "content": "test_content2",
+        }
+        response = self.client.put(
+            path=reverse('article-detail', kwargs={'pk': self.sample_article.pk}),
+            data=data,
+            content_type='application/json',
+            follow=True
+        )
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_delete_article_by_owner(self):
+        self.client.login(
+            username=self.authenticated_user.username,
+            password='testp'
+        )
+        response = self.client.delete(
+            path=reverse('article-detail', kwargs={'pk': self.sample_article.pk}),
+            content_type='application/json',
+            follow=True
+        )
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
