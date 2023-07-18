@@ -17,6 +17,8 @@ class BlogTestCase(TestCase):
         cls.authenticated_user= user_authenticated
 
         sample_article = ArticleFactory()
+        sample_article.author = cls.authenticated_user
+        sample_article.save()
         cls.sample_article = sample_article
 
 
@@ -83,3 +85,22 @@ class BlogTestCase(TestCase):
         self.assertEqual(response.data['content'], self.sample_article.content)
         self.assertEqual(response.data['author'], self.sample_article.author.username)
 
+    def test_update_article_by_owner(self):
+        self.client.login(
+            username=self.authenticated_user.username,
+            password='testp'
+        )
+        data = {
+            "title": "test_title2",
+            "content": "test_content2",
+        }
+        response = self.client.put(
+            path=reverse('article-detail', kwargs={'pk': self.sample_article.pk}),
+            data=data,
+            content_type='application/json',
+            follow=True
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['title'], data['title'])
+        self.assertEqual(response.data['content'], data['content'])
+         
