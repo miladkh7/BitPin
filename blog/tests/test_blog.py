@@ -3,7 +3,7 @@ from django.test import TestCase
 from rest_framework.reverse import reverse
 from rest_framework.test import APIClient
 from rest_framework import status
-from .factories import UserFactory
+from .factories import UserFactory,ArticleFactory
 from ..models import Article
 class BlogTestCase(TestCase):
 
@@ -15,6 +15,10 @@ class BlogTestCase(TestCase):
         user_authenticated.set_password('testp')
         user_authenticated.save()
         cls.authenticated_user= user_authenticated
+
+        sample_article = ArticleFactory()
+        cls.sample_article = sample_article
+
 
     def setUp(self) -> None:
         
@@ -68,4 +72,14 @@ class BlogTestCase(TestCase):
         # check response code
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
+    def get_article(self):
+        response = self.client.get(
+            path=reverse('article-detail', kwargs={'pk': self.sample_article.pk}),
+            content_type='application/json',
+            follow=True
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['title'], self.sample_article.title)
+        self.assertEqual(response.data['content'], self.sample_article.content)
+        self.assertEqual(response.data['author'], self.sample_article.author.username)
 
