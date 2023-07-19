@@ -135,3 +135,23 @@ class BlogTestCase(TestCase):
             follow=True
         )
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    
+    def test_submit_article_rate(self):
+        self.client.login(
+            username=self.authenticated_user.username,
+            password='testp'
+        )
+        data = {
+            "rate": 5,
+        }
+        response = self.client.post(
+            path=reverse('rate', kwargs={'pk': self.sample_article.pk}),
+            data=data,
+            content_type='application/json',
+            follow=True
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['rate'], data['rate'])
+        self.assertEqual(response.data['article'], self.sample_article.pk)
+        self.assertEqual(response.data['user'], self.authenticated_user.pk)
