@@ -34,7 +34,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 class RateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rate
-        field = ['article', 'rate']
+        fields = ['rate']
 
     def create(self, validated_data):
         user_id = self.context['user_id']

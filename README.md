@@ -21,6 +21,13 @@ but the technical task tagged by version 1.0.0**
 * change `sample.env` to `.env ` and set environments variables
 * run by docker with this command `docker-compose up`
 
+
+## EndPoints
+the document of APIs is available in swagger ui at this endpoints
+- `appDomain:appPort/schema` in open api3 format
+- `appDomain:appPort/schema/swagger-ui/` in swagger view
+- `appDomain:appPort/schema/redoc/` in doc view
+  
 ## Usage
 
 ### Registration 
@@ -96,6 +103,10 @@ Some additional Feature and improvements added to project in my free time as hob
 
 #### Added
 - User Api (Registration-login-logout)
+- permissions check 
+- swagger documents for api
+- add some test for blog
+
 
 ## ToDo
 ### User app
@@ -103,14 +114,16 @@ Some additional Feature and improvements added to project in my free time as hob
  - [x] create profile 
  - [x] custom user model admin page
  - [x] login api(token base)
- - [ ] permission
+ - [x] permission
+ - [x] add open api schema
+ - [ ] separate develop setting
  - [ ] document
  - [ ] Update profile Apis
  - [ ] define reviewer permission
  - [ ] use only field to improve performance
 
 ### Blog App
-
+ - [x] add unit test for create, update , get , delete test with checking permission
 
 ### Deployment
  - [ ] git hub ci/cd
