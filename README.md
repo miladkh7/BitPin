@@ -105,6 +105,7 @@ Some additional Feature and improvements added to project in my free time as hob
 - User Api (Registration-login-logout)
 - permissions check 
 - swagger documents for api
+- add some test for blog
 
 
 ## ToDo
@@ -122,7 +123,7 @@ Some additional Feature and improvements added to project in my free time as hob
  - [ ] use only field to improve performance
 
 ### Blog App
-
+ - [x] add unit test for create, update , get , delete test with checking permission
 
 ### Deployment
  - [ ] git hub ci/cd
