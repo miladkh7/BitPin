@@ -1,3 +1,5 @@
+
+[![Build and Push Docker Image to Docker Hub](https://github.com/miladkh7/BitPin/actions/workflows/deploy.yml/badge.svg)](https://github.com/miladkh7/BitPin/actions/workflows/deploy.yml)
 # BitPin
 this is technical task for BitPin
 Blog App Api
