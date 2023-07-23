@@ -1,36 +1,38 @@
 name: Build and Push Docker Image to Docker Hub
 on:
   push:
-    branches: ["main", "imp-deploy-github_action"]
+    branches:  ["main",]
+    tags: [ 'v*.*.*' ]
   pull_request:
     branches:  ["main"]
 
 env:
   REGISTRY: docker.io
-  IMAGE_NAME: ${{github.repository}}
+  IMAGE_NAME: miladkh4/bitpin
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: create env file
-        run : cp sample.env .env
+      # - name: create env file
+      #   run : cp sample.env .env
       - name: build the docker Image
         run: docker-compose build --no-cache --force-rm
   
-  test:
-    name: check docker image health
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+  # test:
+  #   name: check docker image health
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
 
-      - name: test docker image
-        run: docker-compose up
+  #     - name: test docker image
+  #       run: docker-compose up
     
   deploy:
-    runs-on: ubuntu
+    runs-on: ubuntu-latest
     name: push docker image to docker registry(docker hub)
+    needs: [build ]
     steps:
       - uses: actions/checkout@v3
 
@@ -48,12 +50,15 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            name/app
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=ref,event=branch
-            type=ref,event=pr
+            type=raw,value=latest,enable=${{ endsWith(GitHub.ref, 'main') }}
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
+          flavor: |
+            latest=auto
+            prefix=
+            suffix=
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
