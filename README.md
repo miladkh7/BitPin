@@ -1,10 +1,12 @@
+# Bitpin Blog
+[![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com)  [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 
 [![Build and Push Docker Image to Docker Hub](https://github.com/miladkh7/BitPin/actions/workflows/deploy.yml/badge.svg)](https://github.com/miladkh7/BitPin/actions/workflows/deploy.yml)
-# About
+
 this is technical task for BitPin
 Blog App Api
 
-**Some additional feature and improvments add in my free time 
+**:exclamation:Some additional feature and improvments add in my free time 
 but the technical task tagged by version 1.0.0**
 
 
@@ -26,11 +28,12 @@ but the technical task tagged by version 1.0.0**
 ___
 
 ## Technologies
-* Django
-* Django Rest Framework
-* docker and docker compose 
-* github action
-* docker hub registrar
+* [![Django][Django]][Django-url]
+* [![Django Rest Framework][Django-Rest-Framework]][Django-Rest-Framework-url]
+* [![Docker][Docker]][Docker-Compose-url]
+* [![Docker Compose][Docker-Compose]][Docker-Compose-url]
+* [![GitHub Actions][GitHub-Actions]][GitHub-Actions-url]
+* [![Docker Hub][Docker-Hub]][Docker-Hub-url]
 
 
 ## Project Technical Description
@@ -43,12 +46,12 @@ Pull the Docker image from Docker Hub or clone project
 ### Docker hub
 Open a terminal or command prompt.
 Pull the Docker image from Docker Hub by running the following command:
-`docker push miladkh4/bitpin:tagname`
-for example for latest last version use this command 
-`docker push miladkh4/bitpin:latest`
+`docker pull miladkh4/bitpin:tagname`  
+for example for latest last version use this command  
+`docker pull miladkh4/bitpin:latest`
 
 ### Manual
-* clone the repository from github by this command
+* clone the repository from github by this command  
  `git clone https://github.com/miladkh7/BitPin.git `
 * change `sample.env` to `.env ` and set environments variables
 * run by docker with this command `docker-compose up`
@@ -65,9 +68,9 @@ the document of APIs is available in swagger ui at this endpoints
 #### Registration 
 send POST Request to `appDomain:appPort\auth\users\`
 with value
->    **email:** `yourEmail`
-    **username:** `yourUserName`
-    **Password:** `yourPassword`
+>    **email:** `yourEmail`  
+    **username:** `yourUserName`  
+    **Password:** `yourPassword`  
 
 and get Response `HTTP 201 Created`
 for example use this curl command
@@ -84,9 +87,9 @@ curl -X POST http://127.0.0.1:8000/auth/users/ \
 #### Login
 for get token login we shod send POST Request to this end point `appDomain:appPort\auth\token\login`
 with value
-
->    **username:** yourUserName
-    **Password:** yourPassword
+  
+>    **username:** yourUserName  
+    **Password:** yourPassword  
 
 and get Response with `HTTP 200 OK` and get auth_token
 
@@ -126,25 +129,27 @@ curl -X POST http://127.0.0.1:8000/blog/article/ \
     "content": "new book contnet"
 }'
 ```
-## Change Log
+## Change Log  
 ### [1.0.0] 2023-07-08 milad_khaleghi@Live.com
-only support technical Task
+:sparkles: Only support technical Task
 
 ### [1.1.0] 2023-07-18 milad_khaleghi@Live.com
-Some additional Feature and improvements added to project in my free time as hobby.
+:sparkles: Some additional Feature and improvements added to project my free time as hobby.
 
 #### Added
-- User Api (Registration-login-logout)
-- permissions check 
-- swagger documents for api
-- add some test for blog
+- :sparkles: User Api (Registration-login-logout)
+- :lock: Permissions check 
+- :sparkles:: Swagger documents for API
+- :books: Add some tests for blog
 
-### [1.1.2] 2023-07-23 milad_khaleghi@Live.com
-Some additional Feature and improvements added to project in my free time as hobby.
+#### Changed
+- :key: Use Token for authentication
+  
+### [1.2.0] 2023-07-23 milad_khaleghi@Live.com
+:sparkles: Some additional Feature and improvements added to project in my free time as hobby.
 
 #### Added
-- Add github Action for for build and push images to docker hub
-
+- :books: Add GitHub Action for build and push images to Docker Hub
 
 ## ToDo
 ### User app
@@ -165,3 +170,21 @@ Some additional Feature and improvements added to project in my free time as hob
 
 ### Deployment
  - [x] git hub ci/cd
+
+
+
+
+<!-- assets -->
+[Django]:https://img.shields.io/badge/-Django-092E20?style=for-the-badge&logo=django&logoColor=white
+[Django-Rest-Framework]:https://img.shields.io/badge/-Django%20Rest%20Framework-FF1709?style=for-the-badge&logo=django&logoColor=white
+[Docker]:https://img.shields.io/badge/-Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white
+[Docker-Compose]:https://img.shields.io/badge/-Docker%20Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white
+[GitHub-Actions]:https://img.shields.io/badge/-GitHub%20Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white
+[Docker-Hub]:https://img.shields.io/badge/-Docker%20Hub-2496ED?style=for-the-badge&logo=docker&logoColor=white
+
+[Django-url]:https://.djangoproject.com/
+[Django-Rest-Framework-url]:https://www.django-rest-framework.org/
+[Docker-url]:https://www.docker.com
+[Docker-Compose-url]:https://docs.docker.com/compose/
+[GitHub-Actions-url]:https://github.com/features/actions
+[Docker-Hub-url]:https://hub.docker.com/
