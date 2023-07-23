@@ -11,7 +11,7 @@ WORKDIR /code
 # install depencencityes
 ## old version 
 ADD requirements.txt /code/
-RUN --mount=type=cache,target=/root/.cache/pip pip install -r requirements.txt
+RUN  pip install -r requirements.txt
 
 # install depencdencity pipenv
 # RUN pip install pipenv

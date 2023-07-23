@@ -1,14 +1,36 @@
-# BitPin
+
+[![Build and Push Docker Image to Docker Hub](https://github.com/miladkh7/BitPin/actions/workflows/deploy.yml/badge.svg)](https://github.com/miladkh7/BitPin/actions/workflows/deploy.yml)
+# About
 this is technical task for BitPin
 Blog App Api
 
 **Some additional feature and improvments add in my free time 
 but the technical task tagged by version 1.0.0**
 
+
+## Table of contents
+* Project technical Info
+  * [Technologies](#Technologies)
+  * [Project Technical Description](#Project-Technical-Description)
+* [Installation](#Installation)
+* [EndPoints](#End-Points)
+* [Usage](#Usage)
+  * [User](#User)
+    * [Registration](#Registration)
+    * [Login](#Login)
+    * [Logout](#Logout)
+  * [Blog](#Blog)
+    * [Authentication](#Authentication)
+  * [Change Log](#Change-Log)
+  * [ToDo](#ToDo)
+___
+
 ## Technologies
 * Django
 * Django Rest Framework
 * docker and docker compose 
+* github action
+* docker hub registrar
 
 
 ## Project Technical Description
@@ -16,6 +38,16 @@ but the technical task tagged by version 1.0.0**
 
 
 ## Installation
+Install Docker on your machine by following the official Docker installation guide. 
+Pull the Docker image from Docker Hub or clone project
+### Docker hub
+Open a terminal or command prompt.
+Pull the Docker image from Docker Hub by running the following command:
+`docker push miladkh4/bitpin:tagname`
+for example for latest last version use this command 
+`docker push miladkh4/bitpin:latest`
+
+### Manual
 * clone the repository from github by this command
  `git clone https://github.com/miladkh7/BitPin.git `
 * change `sample.env` to `.env ` and set environments variables
@@ -29,8 +61,8 @@ the document of APIs is available in swagger ui at this endpoints
 - `appDomain:appPort/schema/redoc/` in doc view
   
 ## Usage
-
-### Registration 
+### User
+#### Registration 
 send POST Request to `appDomain:appPort\auth\users\`
 with value
 >    **email:** `yourEmail`
@@ -49,7 +81,7 @@ curl -X POST http://127.0.0.1:8000/auth/users/ \
     "email":"example@example.com"
 }'
 ```
-### Login
+#### Login
 for get token login we shod send POST Request to this end point `appDomain:appPort\auth\token\login`
 with value
 
@@ -70,7 +102,7 @@ curl -X POST http://127.0.0.1:8000/auth/token/login \
     "username": "milad"
 }'
 ```
-### Logout
+#### Logout
 for logout send post request to `appDomain:appPort\auth\token\login`
 with  `Authorization` in request header and ` Token [auth_token]` for its value
 
@@ -107,6 +139,12 @@ Some additional Feature and improvements added to project in my free time as hob
 - swagger documents for api
 - add some test for blog
 
+### [1.1.2] 2023-07-23 milad_khaleghi@Live.com
+Some additional Feature and improvements added to project in my free time as hobby.
+
+#### Added
+- Add github Action for for build and push images to docker hub
+
 
 ## ToDo
 ### User app
@@ -126,4 +164,4 @@ Some additional Feature and improvements added to project in my free time as hob
  - [x] add unit test for create, update , get , delete test with checking permission
 
 ### Deployment
- - [ ] git hub ci/cd
+ - [x] git hub ci/cd
