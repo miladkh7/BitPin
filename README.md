@@ -1,12 +1,27 @@
 
 [![Build and Push Docker Image to Docker Hub](https://github.com/miladkh7/BitPin/actions/workflows/deploy.yml/badge.svg)](https://github.com/miladkh7/BitPin/actions/workflows/deploy.yml)
-# BitPin
+# About
 this is technical task for BitPin
 Blog App Api
 
 **Some additional feature and improvments add in my free time 
 but the technical task tagged by version 1.0.0**
 
+___
+
+* Project technical Info
+  * [Technologies](#Technologies)
+  * [Project Technical Description](#Project-Technical-Description)
+* [Installation](#Installation)
+* [EndPoints](#End-Points)
+* [Usage](#Usage)
+  * [Registration](#Registration)
+  * [Login](#Login)
+  * [Logout](#Logout)
+  * [Blog](#Blog)
+    * [Authentication](#Authentication)
+  * [Change Log](#Change-Log)
+  * [ToDo](#ToDo)
 ## Technologies
 * Django
 * Django Rest Framework
